@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/aws/aws-cdk-go/awscdk"
+	"github.com/aws/aws-cdk-go/awscdk/awsdynamodb"
 	"github.com/aws/aws-cdk-go/awscdk/awssns"
 	"github.com/aws/constructs-go/constructs/v3"
 	"github.com/aws/jsii-runtime-go"
@@ -19,7 +20,10 @@ func NewThedsStack(scope constructs.Construct, id string, props *ThedsStackProps
 	stack := awscdk.NewStack(scope, &id, &sprops)
 
 	// The code that defines your stack goes here
-
+	//
+	awsdynamodb.NewTable(stack, jsii.String("TheDS"), &awsdynamodb.TableProps{
+		TableName: jsii.String("TheDrowningSparrow"),
+	})
 	// as an example, here's how you would define an AWS SNS topic:
 	awssns.NewTopic(stack, jsii.String("MyTopic"), &awssns.TopicProps{
 		DisplayName: jsii.String("MyCoolTopic"),
